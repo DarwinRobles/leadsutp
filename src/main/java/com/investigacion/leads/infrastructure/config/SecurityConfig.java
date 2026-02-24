@@ -18,7 +18,11 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
-                .authorizeHttpRequests(auth -> auth.anyRequest().permitAll());
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/api/**", "/api/leads/**").permitAll()
+                        .requestMatchers("/api/users/**").authenticated()
+                        .anyRequest().authenticated()
+                );
 
         return http.build();
     }
@@ -30,7 +34,7 @@ public class SecurityConfig {
         configuration.setAllowedOrigins(List.of(
                 "http://localhost:4200",
                 "https://utpdemo.evolucionista.dev",
-                "https://*.evolucionista.dev"
+                "https://evolucionista.dev"
         ));
         configuration.setAllowedMethods(List.of("GET","POST","PUT","DELETE","OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
