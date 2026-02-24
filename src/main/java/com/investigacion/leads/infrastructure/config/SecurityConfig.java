@@ -18,9 +18,8 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(org.springframework.http.HttpMethod.OPTIONS, "/**").permitAll()
-                        .requestMatchers("/api/**", "/api/leads/**").permitAll()
+                .authorizeHttpRequests(auth -> auth.anyRequest().permitAll()
+                        .requestMatchers("/api/leads", "/api/leads/", "/api/leads/**").permitAll()
                         .requestMatchers("/api/users/**").authenticated()
                         .anyRequest().authenticated()
                 );
@@ -36,10 +35,13 @@ public class SecurityConfig {
                 "http://localhost:4200",
                 "https://utpdemo.evolucionista.dev",
                 "https://utp.evolucionista.dev",
+                "http://utp.evolucionista.dev",
                 "https://evolucionista.dev"
         ));
         configuration.setAllowedMethods(List.of("GET","POST","PUT","DELETE","OPTIONS"));
-        configuration.setAllowedHeaders(List.of("Content-Type", "Cache-Control"));
+        configuration.setAllowedHeaders(List.of("*"));
+
+        configuration.setMaxAge(3600L);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
