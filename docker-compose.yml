@@ -21,6 +21,7 @@ services:
       - "traefik.http.routers.leads-backend.tls.certresolver=letsencrypt"
       - "traefik.http.services.leads-backend.loadbalancer.server.port=8080"
       - "traefik.http.routers.backend.middlewares=backend-headers"
+      - "traefik.http.middlewares.backend-headers.headers.customrequestheaders.X-Forwarded-Proto=https"
       - "traefik.http.middlewares.backend-headers.headers.referrerPolicy=strict-origin-when-cross-origin"
       - "traefik.http.middlewares.backend-headers.headers.accessControlAllowMethods=GET,POST,OPTIONS"
       - "traefik.http.middlewares.backend-headers.headers.accessControlAllowOriginList=https://utpdemo.evolucionista.dev"
