@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/leads")
+@RequestMapping("/leads")
 public class LeadController {
     private final CrearLeadUseCase crearLeadUseCase;
     private final UpdateLeadUserCase updateLeadUserCase;
