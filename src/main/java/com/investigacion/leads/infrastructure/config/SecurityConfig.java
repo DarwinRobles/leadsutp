@@ -27,7 +27,7 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
 
-        configuration.setAllowedOriginPatterns(List.of(
+        configuration.setAllowedOrigins(List.of(
                 "http://localhost:4200",
                 "https://utpdemo.evolucionista.dev",
                 "https://*.evolucionista.dev"
