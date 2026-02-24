@@ -8,10 +8,11 @@ services:
     labels:
       - traefik.enable=true
 #      - traefik.docker.network=dokploy-network
-      - traefik.http.routers.backend.rule=Host(`utp.evolucionista.dev`) && PathPrefix(`/api`)
+      - traefik.http.routers.backend.rule=Host(`utp.evolucionista.dev`)
       - traefik.http.routers.backend.entrypoints=websecure
       - traefik.http.routers.backend.tls.certresolver=letsencrypt
       - traefik.http.services.backend.loadbalancer.server.port=8080
+      - traefik.http.services.backend.loadbalancer.server.scheme=http
 
 #networks:
 #  dokploy-network:
