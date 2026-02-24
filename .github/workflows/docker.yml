@@ -26,7 +26,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: darwinrobles/backend-leads:v1.0.1
+          tags: darwinrobles/backend-leads:v1.0.2
           build-args: |
             CACHEBUST=${{ github.run_number }}
           platforms: linux/amd64

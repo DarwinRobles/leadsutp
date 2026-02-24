@@ -4,15 +4,15 @@ services:
     pull_policy: always
     restart: always
     networks:
-      - dokploy-network-backend
+      - dokploy-network
     labels:
       - traefik.enable=true
-      - traefik.docker.network=dokploy-network-backend
+      - traefik.docker.network=dokploy-network
       - traefik.http.routers.backend.rule=Host(`utp.evolucionista.dev`)
       - traefik.http.routers.backend.entrypoints=websecure
       - traefik.http.routers.backend.tls.certresolver=letsencrypt
       - traefik.http.services.backend.loadbalancer.server.port=8080
 
 networks:
-  dokploy-network-backend:
+  dokploy-network:
     external: true
