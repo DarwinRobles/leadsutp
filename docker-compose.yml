@@ -15,13 +15,11 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=dokploy-network"
-      # L NOMBRE
       - "traefik.http.routers.leads-backend.rule=Host(`utp.evolucionista.dev`)"
       - "traefik.http.routers.leads-backend.entrypoints=websecure"
       - "traefik.http.routers.leads-backend.tls=true"
       - "traefik.http.routers.leads-backend.tls.certresolver=letsencrypt"
       - "traefik.http.services.leads-backend.loadbalancer.server.port=8080"
-      # MIDDLEWARE UNIFICADO
       - "traefik.http.routers.leads-backend.middlewares=leads-headers"
       - "traefik.http.middlewares.leads-headers.headers.customrequestheaders.X-Forwarded-Proto=https"
 
