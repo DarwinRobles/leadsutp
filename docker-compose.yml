@@ -4,7 +4,7 @@ services:
     pull_policy: always
     restart: always
     networks:
-      - dokploy-network-back
+      - dokploy-network-backend
     labels:
       - traefik.enable=true
       - traefik.docker.network=dokploy-network-backend
