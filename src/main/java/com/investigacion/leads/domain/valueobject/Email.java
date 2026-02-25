@@ -11,6 +11,9 @@ public class Email {
             Pattern.compile("^[A-Za-z0-9+_.-]+@(.+)$");
 
     public Email(String value) {
+        if (value == null || value.isBlank()) {
+            throw new BusinessException("El email no puede ser null o vacío");
+        }
         if (!EMAIL_PATTERN.matcher(value).matches()) {
             throw new BusinessException("Email inválido");
         }

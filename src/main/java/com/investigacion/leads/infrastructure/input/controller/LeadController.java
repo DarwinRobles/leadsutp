@@ -5,6 +5,7 @@ import com.investigacion.leads.domain.model.Lead;
 import com.investigacion.leads.domain.port.LeadRepositoryPort;
 import com.investigacion.leads.exception.BusinessException;
 import com.investigacion.leads.infrastructure.input.dto.LeadRegisterRequest;
+import com.investigacion.leads.infrastructure.input.dto.LeadRequestUpdate;
 import com.investigacion.leads.infrastructure.input.dto.LeadResponse;
 import com.investigacion.leads.infrastructure.input.dto.LeadResponseReport;
 import com.investigacion.leads.infrastructure.input.mapper.LeadRequestMapper;
@@ -52,14 +53,14 @@ public class LeadController {
 
     }
 
-    @PutMapping("/actualizar/{id}")
-    public ResponseEntity<ApiResponse<LeadResponse>> actualizarLead(@PathVariable UUID id, @RequestBody LeadRegisterRequest request) {
-        Lead updatedLead = updateLeadUserCase.updateLead(id, LeadRequestMapper.toDomain(request));
+    @PutMapping("/update/{id}")
+    public ResponseEntity<ApiResponse<LeadResponse>> actualizarLead(@PathVariable UUID id, @RequestBody LeadRequestUpdate request) {
+        Lead updatedLead = updateLeadUserCase.updateLead(id, request);
         LeadResponse leadResponse = LeadResponseMapper.fromDomain(updatedLead);
         return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success("Lead updated", leadResponse));
     }
 
-    @DeleteMapping("/eliminar/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<ApiResponse<String>> eliminarLead(@PathVariable UUID id) {
         deleteLeadUserCase.deleteLead(id);
         return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success("Lead deleted", null));

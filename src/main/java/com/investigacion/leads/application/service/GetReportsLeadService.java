@@ -14,9 +14,9 @@ import java.util.stream.Collectors;
 
 
 @Service
-public class GetReportsUseCaseService implements GetReportsUseCase {
+public class GetReportsLeadService implements GetReportsUseCase {
     private final LeadRepositoryPort leadRepositoryPort;
-    public GetReportsUseCaseService(LeadRepositoryPort leadRepositoryPort) {
+    public GetReportsLeadService(LeadRepositoryPort leadRepositoryPort) {
         this.leadRepositoryPort = leadRepositoryPort;
     }
 
